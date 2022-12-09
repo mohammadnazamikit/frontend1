@@ -3,16 +3,13 @@ import "leaflet/dist/leaflet.css";
 
 const Map = () => {
   return (
-    <div className="d-flex m-5 justify-content-between">
+    <div className="d-flex m-5 justify-content-center">
       <MapContainer
-        style={{
-          height: "60vh",
-          width: "100vh",
-        }}
-        center={[51.505, -0.09]}
+        center={[49.006889, 8.403653]}
         zoom={13}
         scrollWheelZoom={true}
         className="ms-5"
+        style={{ height: "40vh", width: "100vh" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap </a> contributors'
