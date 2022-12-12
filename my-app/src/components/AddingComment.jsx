@@ -1,11 +1,9 @@
-import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
-import Navbar1 from "./Navbar1";
+import { Button, Col, Container, Form, Row } from "react-bootstrap";
 
-const SignIn = () => {
+const AddingComment = () => {
   return (
     <>
-      <Navbar1 />
-      <h2 className="d-flex m-5 justify-content-start">Sign in</h2>
+      <h3 className="d-flex justify-content-start">adding Comment</h3>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Container>
@@ -26,27 +24,20 @@ const SignIn = () => {
           <Container>
             <Row>
               <Col>
-                <Form.Label>Password</Form.Label>
+                <Form.Label>Comment</Form.Label>
               </Col>
               <Col>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control type="email" placeholder="Comment" />
               </Col>
             </Row>
           </Container>
         </Form.Group>
         <Button variant="danger" type="submit">
-          Continue
+          Add comment
         </Button>
       </Form>
-      <h6>Sign in with google account</h6>
-      <Button>
-        <Image src="../images/googleimage.png" height="20px" />
-      </Button>
-      <h6>
-        don't have account? <a className="text-danger">sign up</a>
-      </h6>
     </>
   );
 };
 
-export default SignIn;
+export default AddingComment;
