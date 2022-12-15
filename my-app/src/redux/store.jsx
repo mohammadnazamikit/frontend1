@@ -9,8 +9,9 @@ export const initialState = {
   },
 };
 
-export const store = configureStore({
+const Store = configureStore({
   reducer: reducer,
-  devTools: process.env.NODE_ENV !== "production",
   middleware: [thunk],
 });
+
+export default Store;

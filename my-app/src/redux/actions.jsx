@@ -1,5 +1,6 @@
 export const Loading = " Loading";
 export const Search = "Search";
+export const SET_USER_INFO = "setUserInfo";
 
 export const setLoading = (isLoading) => ({
   type: Loading,
