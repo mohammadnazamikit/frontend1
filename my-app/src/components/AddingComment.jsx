@@ -1,6 +1,8 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
 
 const AddingComment = () => {
+  const navigateHome = () => Navigate("/");
   return (
     <>
       <h3 className="d-flex justify-content-start">adding Comment</h3>
@@ -32,7 +34,7 @@ const AddingComment = () => {
             </Row>
           </Container>
         </Form.Group>
-        <Button variant="danger" type="submit">
+        <Button variant="danger" type="submit" onClick={navigateHome}>
           Add comment
         </Button>
       </Form>
