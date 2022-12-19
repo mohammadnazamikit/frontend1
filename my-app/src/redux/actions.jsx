@@ -35,7 +35,7 @@ export const LogInWithThunk = (email, password) => {
         const data = await response.json();
         dispatch(setUserInfo(data));
       } else {
-        console.log("error logging in");
+        console.log("error logging out");
       }
     } catch (error) {
       console.log(error);
