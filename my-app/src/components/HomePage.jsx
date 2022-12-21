@@ -10,7 +10,7 @@ const HomePage = (props) => {
       <Navbar1></Navbar1>
       <Navbar2></Navbar2>
       <Map />
-      <div className="fw-bold ml-1 d-flex fs-1 ms-4"> On sale</div>
+      <div className="fw-bold ml-1 d-flex fs-1 ms-4 bg-secondary"> On sale</div>
       <Items />
       <Footer />
     </>

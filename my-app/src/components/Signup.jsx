@@ -1,12 +1,55 @@
+import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { LogInWithThunk } from "../redux/actions";
 import Navbar1 from "./Navbar1";
 
-const SignUp = () => {
+const mapStateToProps = (state) => {
+  return {
+    user: state.userInfo,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getMe: () => {
+      dispatch(LogInWithThunk());
+    },
+  };
+};
+
+const SignUp = (props) => {
+  const baseURL = "";
+  const [setEmail, email] = useState("");
+  const [setPassword, password] = useState("");
+  const [setCheck, check] = useState(false);
+
   const navigate = useNavigate();
   const signIn = () => {
     navigate("/signin");
   };
+
+  const signingUp = async (obj) => {
+    const options = {
+      method: "POST",
+      Credentials: "include",
+      Headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(obj),
+    };
+    const URL = `${baseURL}/user/register`;
+    try {
+      const response = await fetch(URL, options);
+      if (response.ok) {
+        const data = await response.json();
+      } else {
+        console.log("error getting data");
+      }
+    } catch (error) {
+      console.log("error in connecting to server :", error);
+    }
+  };
+
   return (
     <>
       <Navbar1 />
@@ -45,7 +88,7 @@ const SignUp = () => {
         >
           <Form.Check type="checkbox" label="agree to terms and conditions" />
         </Form.Group>
-        <Button variant="danger" type="submit">
+        <Button variant="danger" type="submit" onClick={signingUp}>
           Continue
         </Button>
       </Form>
@@ -58,4 +101,4 @@ const SignUp = () => {
     </>
   );
 };
-export default SignUp;
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

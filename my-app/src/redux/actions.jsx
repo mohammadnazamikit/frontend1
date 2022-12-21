@@ -2,7 +2,7 @@ export const Loading = " Loading";
 export const Search = "Search";
 export const SET_USER_INFO = "setUserInfo";
 
-/* export const setLoading = (isLoading) => ({
+export const setLoading = (isLoading) => ({
   type: Loading,
   payload: isLoading,
 });
@@ -35,10 +35,10 @@ export const LogInWithThunk = (email, password) => {
         const data = await response.json();
         dispatch(setUserInfo(data));
       } else {
-        console.log("error logging out");
+        console.log("error logging in");
       }
     } catch (error) {
       console.log(error);
     }
   };
-}; */
+};
