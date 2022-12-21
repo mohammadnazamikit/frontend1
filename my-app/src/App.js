@@ -21,16 +21,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getMe: () => {
+    /* getMe: () => {
       dispatch();
-    },
+    }, */
   };
 };
 
 function App(props) {
-  useEffect(() => {
+  /*  useEffect(() => {
     props.getMe();
-  }, []);
+  }, []); */
 
   return (
     <div className="App">

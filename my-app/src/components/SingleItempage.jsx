@@ -1,4 +1,5 @@
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import AddToCart from "./AddToCart";
 import Comments from "./Comment";
 import Footer from "./footer";
@@ -7,6 +8,10 @@ import Navbar1 from "./Navbar1";
 import Stars from "./Stars";
 
 const SingleItem = () => {
+  const navigate = useNavigate();
+  const addcommentpage = () => {
+    navigate("/AddCommetPage");
+  };
   return (
     <>
       <Navbar1 />
@@ -45,7 +50,9 @@ const SingleItem = () => {
       <Container>
         <Row>
           <Col>
-            <Button>add comment or rating to this product</Button>
+            <Button onClick={addcommentpage}>
+              add comment or rating to this product
+            </Button>
           </Col>
           <Col>
             <Button>My Cart</Button>

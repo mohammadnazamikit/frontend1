@@ -1,7 +1,12 @@
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Navbar1 from "./Navbar1";
 
 const SignIn = () => {
+  const navigate = useNavigate("/signup");
+  const signUp = () => {
+    navigate("/signup");
+  };
   return (
     <>
       <Navbar1 />
@@ -43,7 +48,10 @@ const SignIn = () => {
         <Image src="../images/googleimage.png" height="20px" />
       </Button>
       <h6>
-        don't have account? <a className="text-danger">sign up</a>
+        don't have account?{" "}
+        <a className="text-danger" onClick={signUp}>
+          sign up
+        </a>
       </h6>
     </>
   );

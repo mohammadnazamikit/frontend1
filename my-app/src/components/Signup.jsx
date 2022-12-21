@@ -1,7 +1,12 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import Navbar1 from "./Navbar1";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const signIn = () => {
+    navigate("/signin");
+  };
   return (
     <>
       <Navbar1 />
@@ -45,7 +50,10 @@ const SignUp = () => {
         </Button>
       </Form>
       <h6>
-        Have an account? <a className="text-danger">Sign in</a>
+        Have an account?{" "}
+        <a className="text-danger" onClick={signIn}>
+          Sign in
+        </a>
       </h6>
     </>
   );

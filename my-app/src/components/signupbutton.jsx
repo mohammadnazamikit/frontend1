@@ -1,9 +1,16 @@
 import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const SignUp_Button = (props) => {
+  const navigate = useNavigate();
+  const signUp = () => {
+    navigate("/signup");
+  };
   return (
     <>
-      <Button>Sign Up</Button>
+      <Button className="text-primary bg-secondary " onClick={signUp}>
+        Sign Up
+      </Button>
     </>
   );
 };

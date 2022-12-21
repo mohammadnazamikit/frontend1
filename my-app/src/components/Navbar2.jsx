@@ -6,7 +6,7 @@ import SignUp_Button from "./signupbutton";
 
 const Navbar2 = (props) => {
   return (
-    <Container>
+    <Container className="bg-secondary">
       <Row>
         <Col>
           <Category />

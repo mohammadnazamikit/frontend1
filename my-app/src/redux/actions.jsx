@@ -2,7 +2,7 @@ export const Loading = " Loading";
 export const Search = "Search";
 export const SET_USER_INFO = "setUserInfo";
 
-export const setLoading = (isLoading) => ({
+/* export const setLoading = (isLoading) => ({
   type: Loading,
   payload: isLoading,
 });
@@ -41,4 +41,4 @@ export const LogInWithThunk = (email, password) => {
       console.log(error);
     }
   };
-};
+}; */
