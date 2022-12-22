@@ -23,7 +23,7 @@ const SignUp = (props) => {
   const baseURL = "";
   const [setEmail, email] = useState("");
   const [setPassword, password] = useState("");
-  const [setCheck, check] = useState(false);
+  const [setChecked, checked] = useState(false);
 
   const navigate = useNavigate();
   const signIn = () => {
@@ -39,11 +39,15 @@ const SignUp = (props) => {
     };
     const URL = `${baseURL}/user/register`;
     try {
-      const response = await fetch(URL, options);
-      if (response.ok) {
-        const data = await response.json();
+      if (checked) {
+        const response = await fetch(URL, options);
+        if (response.ok) {
+          const data = await response.json();
+        } else {
+          console.log("error getting data");
+        }
       } else {
-        console.log("error getting data");
+        console.log("please agree to term and conditions");
       }
     } catch (error) {
       console.log("error in connecting to server :", error);
@@ -86,7 +90,12 @@ const SignUp = (props) => {
           className="mb-3 d-flex justify-content-center"
           controlId="formBasicCheckbox"
         >
-          <Form.Check type="checkbox" label="agree to terms and conditions" />
+          <Form.Check
+            type="checkbox"
+            checked={checked}
+            onChange={(e) => setChecked(e.target.checked)}
+            label="agree to terms and conditions"
+          />
         </Form.Group>
         <Button variant="danger" type="submit" onClick={signingUp}>
           Continue
