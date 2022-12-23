@@ -9,9 +9,9 @@ export const setDataInState = (data) => ({
   payload: data,
 });
 
-export const setSearchWord = (searchword) => ({
+export const setSearchWord = (searchWord) => ({
   type: searching,
-  payload: searchword,
+  payload: searchWord,
 });
 
 export const setLoading = (isLoading) => ({
@@ -63,8 +63,13 @@ export const searchWordWithThunk = (searchWord) => {
         payload: searchWord,
       });
       const url = "";
+      const options = {
+        method: "GET",
+        Credential: "include",
+        body: JSON.stringify({ word: searchWord }),
+      };
 
-      const response = await fetch(url);
+      const response = await fetch(url, options);
       const data = await response.json();
       dispatch(setSearchWord(data));
     } catch (error) {

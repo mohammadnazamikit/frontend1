@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { Button, Form } from "react-bootstrap";
 import { setUserInfo } from "../redux/actions";
 import { searchWordWithThunk } from "../redux/actions";
+import { useNavigate } from "react-router-dom";
 
 const mapStateToProps = (state) => {
   return {
@@ -21,6 +22,14 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const SearchButton = (props) => {
+  const SearchingWord = () => {
+    props.searchWord();
+    const navigate = useNavigate();
+    const toItems = () => {
+      navigate("/searchresult");
+    };
+  };
+
   return (
     <Form className="d-flex">
       <Form.Control
@@ -30,7 +39,7 @@ const SearchButton = (props) => {
         aria-label="Search"
         onChange={(e) => props.getMe(e.target.value)}
       />
-      <Button variant="outline-success" onClick={() => props.searchWord()}>
+      <Button variant="outline-success" onClick={() => SearchingWord()}>
         Search
       </Button>
     </Form>
