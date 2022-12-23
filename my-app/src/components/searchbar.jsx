@@ -1,4 +1,24 @@
+import { connect } from "react-redux";
 import { Button, Form } from "react-bootstrap";
+import { setUserInfo } from "../redux/actions";
+import { searchWordWithThunk } from "../redux/actions";
+
+const mapStateToProps = (state) => {
+  return {
+    user: state.userinfo,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getMe: (data) => {
+      dispatch(setUserInfo(data));
+    },
+    searchWord: (data) => {
+      dispatch(searchWordWithThunk(data));
+    },
+  };
+};
 
 const SearchButton = (props) => {
   return (
@@ -8,10 +28,13 @@ const SearchButton = (props) => {
         placeholder="Search"
         className="me-2"
         aria-label="Search"
+        onChange={(e) => props.getMe(e.target.value)}
       />
-      <Button variant="outline-success">Search</Button>
+      <Button variant="outline-success" onClick={() => props.searchWord()}>
+        Search
+      </Button>
     </Form>
   );
 };
 
-export default SearchButton;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchButton);

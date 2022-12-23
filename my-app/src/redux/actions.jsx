@@ -1,6 +1,18 @@
 export const Loading = " Loading";
 export const Search = "Search";
 export const SET_USER_INFO = "setUserInfo";
+export const dataInState = null;
+export const searching = null;
+
+export const setDataInState = (data) => ({
+  type: dataInState,
+  payload: data,
+});
+
+export const setSearchWord = (searchword) => ({
+  type: searching,
+  payload: searchword,
+});
 
 export const setLoading = (isLoading) => ({
   type: Loading,
@@ -39,6 +51,24 @@ export const LogInWithThunk = (email, password) => {
       }
     } catch (error) {
       console.log(error);
+    }
+  };
+};
+
+export const searchWordWithThunk = (searchWord) => {
+  return async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: searching,
+        payload: searchWord,
+      });
+      const url = "";
+
+      const response = await fetch(url);
+      const data = await response.json();
+      dispatch(setSearchWord(data));
+    } catch (error) {
+      console.log("this is a error", error);
     }
   };
 };

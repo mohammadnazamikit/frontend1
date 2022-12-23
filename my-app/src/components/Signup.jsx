@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LogInWithThunk } from "../redux/actions";
+import { LogInWithThunk, setDataInState } from "../redux/actions";
 import Navbar1 from "./Navbar1";
+import SignIn from "./Signin";
 
 const mapStateToProps = (state) => {
   return {
@@ -16,24 +17,32 @@ const mapDispatchToProps = (dispatch) => {
     getMe: () => {
       dispatch(LogInWithThunk());
     },
+    dataToSave: (dataToState) => {
+      dispatch(setDataInState(dataToState));
+    },
   };
 };
 
 const SignUp = (props) => {
   const baseURL = "";
-  const [setEmail, email] = useState("");
-  const [setPassword, password] = useState("");
-  const [setChecked, checked] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [checked, setChecked] = useState(false);
+  console.log(password, email, checked);
 
   const navigate = useNavigate();
   const signIn = () => {
     navigate("/signin");
   };
 
-  const signingUp = async (obj) => {
+  const signingUp = async () => {
+    const obj = {
+      passWord: password,
+      Email: email,
+    };
+
     const options = {
       method: "POST",
-      Credentials: "include",
       Headers: { "Content-Type": "application/json" },
       body: JSON.stringify(obj),
     };
@@ -43,6 +52,7 @@ const SignUp = (props) => {
         const response = await fetch(URL, options);
         if (response.ok) {
           const data = await response.json();
+          this.props.dataToSave(data);
         } else {
           console.log("error getting data");
         }
@@ -51,6 +61,8 @@ const SignUp = (props) => {
       }
     } catch (error) {
       console.log("error in connecting to server :", error);
+    } finally {
+      signIn();
     }
   };
 
@@ -66,7 +78,11 @@ const SignUp = (props) => {
                 <Form.Label>Email address</Form.Label>
               </Col>
               <Col>
-                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Control
+                  type="email"
+                  placeholder="Enter email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
               </Col>
             </Row>
           </Container>
@@ -81,7 +97,11 @@ const SignUp = (props) => {
                 <Form.Label>Password</Form.Label>
               </Col>
               <Col>
-                <Form.Control type="password" placeholder="Password" />
+                <Form.Control
+                  type="password"
+                  placeholder="Password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </Col>
             </Row>
           </Container>
@@ -92,8 +112,7 @@ const SignUp = (props) => {
         >
           <Form.Check
             type="checkbox"
-            checked={checked}
-            onChange={(e) => setChecked(e.target.checked)}
+            onChange={(e) => setChecked(e.target.value)}
             label="agree to terms and conditions"
           />
         </Form.Group>
