@@ -26,7 +26,7 @@ const SingleItem = () => {
           <Col>
             <Container>
               <Row className="d-flex justify-content-end">
-                <Like />
+                <Like itemId={(e) => e.target.value} />
               </Row>
               <Row className="d-flex justify-content-end">
                 <AddToCart />

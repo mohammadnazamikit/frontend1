@@ -4,6 +4,12 @@ export const SET_USER_INFO = "setUserInfo";
 export const dataInState = null;
 export const searching = null;
 export const Liking = null;
+export const items = [];
+
+export const setItems = (data) => ({
+  type: items,
+  payload: data,
+});
 
 export const setLiking = (data) => ({
   type: Liking,
@@ -98,6 +104,23 @@ export const LikingWithThunk = (data) => {
       dispatch(setLiking(data));
     } catch (error) {
       console.log("this is a error", error);
+    }
+  };
+};
+
+export const getItemsWithThunk = () => {
+  return async (dispatch, getState) => {
+    try {
+      const url = "http://localhost:3005/items";
+      const options = {
+        method: "GET",
+      };
+      const response = await fetch(url, options);
+      const data = await response.json();
+      setItems(data);
+      console.log(items);
+    } catch (error) {
+      console.log("this is a error happened while getting item with thunk");
     }
   };
 };
