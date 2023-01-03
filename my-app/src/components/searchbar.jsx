@@ -25,9 +25,7 @@ const SearchButton = (props) => {
   const SearchingWord = () => {
     props.searchWord();
     const navigate = useNavigate();
-    const toItems = () => {
-      navigate("/searchresult");
-    };
+    navigate("/searchresult");
   };
 
   return (

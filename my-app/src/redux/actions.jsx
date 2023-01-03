@@ -3,6 +3,12 @@ export const Search = "Search";
 export const SET_USER_INFO = "setUserInfo";
 export const dataInState = null;
 export const searching = null;
+export const Liking = null;
+
+export const setLiking = (data) => ({
+  type: Liking,
+  payload: data,
+});
 
 export const setDataInState = (data) => ({
   type: dataInState,
@@ -72,6 +78,24 @@ export const searchWordWithThunk = (searchWord) => {
       const response = await fetch(url, options);
       const data = await response.json();
       dispatch(setSearchWord(data));
+    } catch (error) {
+      console.log("this is a error", error);
+    }
+  };
+};
+
+export const LikingWithThunk = (data) => {
+  return async (dispatch, getState) => {
+    try {
+      const url = "";
+      const options = {
+        method: "PUT",
+        Credential: "include",
+        body: JSON.stringify({ like: "1" }),
+      };
+      const response = await fetch(url, options);
+      const data = await response.json();
+      dispatch(setLiking(data));
     } catch (error) {
       console.log("this is a error", error);
     }
