@@ -21,8 +21,8 @@ const Like = (props) => {
     <>
       <Button
         style={{ width: "50px" }}
-        onClick={() => {
-          props.settingLike();
+        onClick={(e) => {
+          props.settingLike(e.target.value);
         }}
       >
         Like

@@ -1,4 +1,6 @@
+import { useEffect } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
+import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import AddToCart from "./AddToCart";
 import Comments from "./Comment";
@@ -7,7 +9,25 @@ import Like from "./Like";
 import Navbar1 from "./Navbar1";
 import Stars from "./Stars";
 
-const SingleItem = () => {
+const mapStateToProps = (state) => {
+  return {
+    itemData: state.itemsData,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+const SingleItem = (props) => {
+  const items = "ITEMS";
+
+  const itemData = () => {};
+
+  useEffect(() => {
+    itemData();
+  }, []);
+
   const navigate = useNavigate();
   const addcommentpage = () => {
     navigate("/AddCommetPage");
@@ -64,4 +84,4 @@ const SingleItem = () => {
     </>
   );
 };
-export default SingleItem;
+export default connect(mapStateToProps, mapDispatchToProps)(SingleItem);
