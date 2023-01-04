@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useEffect } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import { connect } from "react-redux";
@@ -20,18 +21,16 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 const SingleItem = (props) => {
-  const items = "ITEMS";
-
-  const itemData = () => {};
-
-  useEffect(() => {
-    itemData();
-  }, []);
-
   const navigate = useNavigate();
-  const addcommentpage = () => {
+  const addCommentPage = () => {
     navigate("/AddCommetPage");
   };
+  const { item, setItem } = useState({});
+  useEffect(() => {
+    if (props.itemData) {
+      setItem(props.itemData);
+    }
+  }, []);
   return (
     <>
       <Navbar1 />
@@ -70,7 +69,7 @@ const SingleItem = (props) => {
       <Container>
         <Row>
           <Col>
-            <Button onClick={addcommentpage}>
+            <Button onClick={addCommentPage}>
               add comment or rating to this product
             </Button>
           </Col>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getItemsWithThunk } from "../redux/actions";
@@ -5,7 +6,7 @@ import Item from "./item";
 
 const mapStateToProps = (state) => {
   return {
-    items: state.items,
+    itemsData: state.itemsData,
   };
 };
 const mapDispatchToProps = (dispatch) => {
@@ -21,13 +22,14 @@ const Items = (props) => {
   const itemPage = () => {
     navigate("/singleItem");
   };
-  const items = [1, 2];
+
+  const items = props.itemsData;
   return (
     <div className="d-flex ms-5" onClick={itemPage}>
       {items.map((item, i) => {
         return (
-          <div onClick={() => props.getItems()}>
-            <Item price={item} key={i} />
+          <div key={i} onClick={() => props.getItems()}>
+            <Item item={item} />
           </div>
         );
       })}
