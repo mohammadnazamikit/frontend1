@@ -4,10 +4,10 @@ export const SET_USER_INFO = "setUserInfo";
 export const dataInState = null;
 export const searching = null;
 export const Liking = null;
-export const items = [];
+export const ITEMS = "ITEMS";
 
 export const setItems = (data) => ({
-  type: items,
+  type: ITEMS,
   payload: data,
 });
 
@@ -109,17 +109,22 @@ export const LikingWithThunk = (data) => {
 };
 
 export const getItemsWithThunk = () => {
+  const url = "http://localhost:3005/items";
+  const options = {
+    method: "GET",
+  };
   return async (dispatch, getState) => {
-    try {
-      const url = "http://localhost:3005/items";
-      const options = {
-        method: "GET",
-      };
-      const response = await fetch(url, options);
+    const response = await fetch(url, options);
+    if (response.ok) {
       const data = await response.json();
-      setItems(data);
-      console.log(items);
-    } catch (error) {
+      dispatch(setItems(data));
+      console.log(response);
+      console.log(data);
+      console.log(ITEMS);
+      console.log("this line");
+    } else {
+      dispatch(setItems("error happened"));
+      console.log(ITEMS);
       console.log("this is a error happened while getting item with thunk");
     }
   };

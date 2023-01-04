@@ -1,5 +1,5 @@
 import { initialState } from "./store";
-import { dataInState, Loading, Search } from "./actions";
+import { dataInState, Loading, Search, ITEMS } from "./actions";
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -17,6 +17,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         query: action.payload,
+      };
+    case ITEMS:
+      return {
+        ...state,
+        itemsData: action.payload,
       };
     default:
       return state;
