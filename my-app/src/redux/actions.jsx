@@ -1,7 +1,7 @@
 export const Loading = " Loading";
 export const Search = "Search";
 export const SET_USER_INFO = "setUserInfo";
-export const dataInState = null;
+export const SIGN_UP_DATA = null;
 export const searching = null;
 export const Liking = null;
 export const ITEMS = "ITEMS";
@@ -17,7 +17,7 @@ export const setLiking = (data) => ({
 });
 
 export const setDataInState = (data) => ({
-  type: dataInState,
+  type: SIGN_UP_DATA,
   payload: data,
 });
 

@@ -37,7 +37,11 @@ const SearchButton = (props) => {
         aria-label="Search"
         onChange={(e) => props.getMe(e.target.value)}
       />
-      <Button variant="outline-success" onClick={() => SearchingWord()}>
+      <Button
+        style={{ background: "black" }}
+        variant="outline-success"
+        onClick={() => SearchingWord()}
+      >
         Search
       </Button>
     </Form>

@@ -8,6 +8,7 @@ export const initialState = {
   JsonVarible: {
     _id: "",
   },
+  SIGN_UP_DATA_IN_STORE: "",
 };
 
 const Store = configureStore({

@@ -1,5 +1,5 @@
 import { initialState } from "./store";
-import { dataInState, Loading, Search, ITEMS } from "./actions";
+import { dataInState, Loading, Search, ITEMS, SIGN_UP_DATA } from "./actions";
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -13,10 +13,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         query: action.payload,
       };
-    case dataInState:
+    case SIGN_UP_DATA:
       return {
         ...state,
-        query: action.payload,
+        SIGN_UP_DATA_IN_STORE: action.payload,
       };
     case ITEMS:
       return {
