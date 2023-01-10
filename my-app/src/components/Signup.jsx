@@ -49,7 +49,7 @@ const SignUp = (props) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(obj),
     };
-    const URL = `http://localhost:3005/signin/register`;
+    const URL = process.env.baseURL + `signin/register`;
     try {
       /*   if (checked) { */
       const response = await fetch(URL, options);

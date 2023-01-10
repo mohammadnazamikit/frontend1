@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -22,8 +23,14 @@ const Items = (props) => {
   const itemPage = () => {
     navigate("/singleItem");
   };
+  const [items, setItems] = useState({});
 
-  const items = props.itemsData;
+  useEffect(() => {
+    props.getItems();
+    setItems(props.itemsData);
+  });
+
+  // const items = props.itemsData();
   return (
     <div className="d-flex ms-5" onClick={itemPage}>
       {items.map((item, i) => {
