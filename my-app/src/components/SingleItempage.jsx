@@ -25,10 +25,11 @@ const SingleItem = (props) => {
   const addCommentPage = () => {
     navigate("/AddCommetPage");
   };
-  const { item, setItem } = useState({});
+  const [item, setItem] = useState(null);
   useEffect(() => {
     if (props.itemData) {
       setItem(props.itemData);
+      console.log("this is item", item);
     }
   }, []);
   return (
@@ -53,7 +54,9 @@ const SingleItem = (props) => {
             </Container>
           </Col>
         </Row>
-        <h3 className="text-danger d-flex justify-content-start">price</h3>
+        <h3 className="text-danger d-flex justify-content-start">
+          {item[0].price}
+        </h3>
       </Container>
       <Container>
         <Row>

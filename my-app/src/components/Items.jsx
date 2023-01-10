@@ -12,7 +12,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    getItems: () => {
+    get_One_Item: () => {
       dispatch(getItemsWithThunk());
     },
   };
@@ -23,23 +23,23 @@ const Items = (props) => {
   const itemPage = () => {
     navigate("/singleItem");
   };
-  const [items, setItems] = useState({});
+  const [items, setItems] = useState(null);
 
   useEffect(() => {
     props.getItems();
     setItems(props.itemsData);
-  });
+  }, []);
 
-  // const items = props.itemsData();
   return (
     <div className="d-flex ms-5" onClick={itemPage}>
-      {items.map((item, i) => {
-        return (
-          <div key={i} onClick={() => props.getItems()}>
-            <Item item={item} />
-          </div>
-        );
-      })}
+      {items &&
+        items.map((item, i) => {
+          return (
+            <div key={i} onClick={() => props.get_One_Item()}>
+              <Item item={item} />
+            </div>
+          );
+        })}
     </div>
   );
 };
