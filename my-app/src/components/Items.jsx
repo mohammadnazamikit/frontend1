@@ -26,7 +26,7 @@ const Items = (props) => {
   const [items, setItems] = useState(null);
 
   useEffect(() => {
-    props.getItems();
+    props.get_One_Item();
     setItems(props.itemsData);
   }, []);
 
