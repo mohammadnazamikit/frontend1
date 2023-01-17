@@ -4,11 +4,12 @@ import reducer from "./reducer";
 
 export const initialState = {
   isLoading: false,
-  itemsData: {},
+  itemsData: [],
   JsonVarible: {
     _id: "",
   },
   SIGN_UP_DATA_IN_STORE: "",
+  item_Clicked: "",
 };
 
 const Store = configureStore({

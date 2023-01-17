@@ -5,6 +5,12 @@ export const SIGN_UP_DATA = null;
 export const searching = null;
 export const Liking = null;
 export const ITEMS = "ITEMS";
+export const ITEM_CLICKED = "null";
+
+export const setItemClick = (data) => ({
+  type: ITEM_CLICKED,
+  payload: data,
+});
 
 export const setItems = (data) => ({
   type: ITEMS,
