@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getItemsWithThunk } from "../redux/actions";
+import { getItemsWithThunk, setItemClick } from "../redux/actions";
 import Item from "./item";
+
 /*
 const mapStateToProps = (state) => {
   return {
@@ -25,23 +26,19 @@ const Items = (props) => {
   const itemPage = () => {
     navigate("/singleItem");
   };
-  const [items, setItems] = useState([]);
 
   useEffect(() => {
     // props.get_One_Item();
     dispatch(getItemsWithThunk());
-
-    setItems(itemsFromRedux);
-    console.log("this is items :", items);
   }, []);
 
   return (
     <div className="d-flex ms-5" onClick={itemPage}>
-      {!items && <h3>please wait to till add items</h3>}
-      {items &&
-        items.map((item, i) => {
+      {!itemsFromRedux && <h3>please wait to till add items</h3>}
+      {itemsFromRedux &&
+        itemsFromRedux.map((item, i) => {
           return (
-            <div key={i}>
+            <div key={i} onClick={(item) => dispatch(setItemClick(item))}>
               <Item item={item} />
             </div>
           );

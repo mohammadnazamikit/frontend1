@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import AddToCart from "./AddToCart";
 import Comments from "./Comment";
@@ -10,7 +10,7 @@ import Like from "./Like";
 import Navbar1 from "./Navbar1";
 import Stars from "./Stars";
 
-const mapStateToProps = (state) => {
+/* const mapStateToProps = (state) => {
   return {
     itemData: state.itemsData,
   };
@@ -18,20 +18,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {};
-};
+}; */
 
 const SingleItem = (props) => {
   const navigate = useNavigate();
+  const itemClickFromRedux = useSelector((state) => state.item_Clicked);
   const addCommentPage = () => {
     navigate("/AddCommetPage");
   };
-  const [item, setItem] = useState(null);
-  useEffect(() => {
-    if (props.itemData) {
-      setItem(props.itemData);
-      console.log("this is item", item);
-    }
-  }, []);
   return (
     <>
       <Navbar1 />
@@ -55,7 +49,7 @@ const SingleItem = (props) => {
           </Col>
         </Row>
         <h3 className="text-danger d-flex justify-content-start">
-          {item[0].price}
+          {itemClickFromRedux.price}
         </h3>
       </Container>
       <Container>
@@ -86,4 +80,5 @@ const SingleItem = (props) => {
     </>
   );
 };
-export default connect(mapStateToProps, mapDispatchToProps)(SingleItem);
+export default SingleItem;
+/* export default connect(mapStateToProps, mapDispatchToProps)(SingleItem); */
