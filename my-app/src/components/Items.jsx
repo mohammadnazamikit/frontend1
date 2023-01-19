@@ -2,7 +2,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getItemsWithThunk, setItemClick } from "../redux/actions";
+import {
+  getItemsWithThunk,
+  get_Item_Id_With_Thunk,
+  setItemClick,
+} from "../redux/actions";
 import Item from "./item";
 
 /*
@@ -38,8 +42,11 @@ const Items = (props) => {
       {itemsFromRedux &&
         itemsFromRedux.map((item, i) => {
           return (
-            <div key={i} onClick={(item) => dispatch(setItemClick(item))}>
-              <Item item={item} />
+            <div key={i}>
+              <Item
+                item={item}
+                onClick={(item) => dispatch(get_Item_Id_With_Thunk(item._id))}
+              />
             </div>
           );
         })}

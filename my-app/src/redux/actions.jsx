@@ -1,3 +1,5 @@
+import { stringify } from "querystring";
+
 export const Loading = " Loading";
 export const Search = "Search";
 export const SET_USER_INFO = "setUserInfo";
@@ -131,6 +133,28 @@ export const getItemsWithThunk = () => {
     } else {
       dispatch(setItems("error happened"));
       console.log(ITEMS);
+      console.log("this is a error happened while getting item with thunk");
+    }
+  };
+};
+
+export const get_Item_Id_With_Thunk = (id) => {
+  console.log("this is id", id);
+  const url = "http://localhost:3005/items/:" + id;
+  const options = {
+    method: "GET",
+  };
+  return async (dispatch, getState) => {
+    const response = await fetch(url, options);
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(setItemClick(data));
+      console.log(response);
+      console.log(data);
+      console.log(ITEM_CLICKED);
+    } else {
+      dispatch(setItemClick("error happened"));
+      console.log(ITEM_CLICKED);
       console.log("this is a error happened while getting item with thunk");
     }
   };

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
-import { connect, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getItemsWithThunk, get_Item_Id_With_Thunk } from "../redux/actions";
 import AddToCart from "./AddToCart";
 import Comments from "./Comment";
 import Footer from "./footer";
@@ -21,11 +22,18 @@ const mapDispatchToProps = (dispatch) => {
 }; */
 
 const SingleItem = (props) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const itemClickFromRedux = useSelector((state) => state.item_Clicked);
+
   const addCommentPage = () => {
     navigate("/AddCommetPage");
   };
+
+  useEffect(() => {
+    // props.get_One_Item();
+    dispatch(get_Item_Id_With_Thunk(itemClickFromRedux));
+  }, []);
   return (
     <>
       <Navbar1 />
@@ -49,7 +57,7 @@ const SingleItem = (props) => {
           </Col>
         </Row>
         <h3 className="text-danger d-flex justify-content-start">
-          {itemClickFromRedux.price}
+          {/*  {itemClickFromRedux.price} */} 8
         </h3>
       </Container>
       <Container>
