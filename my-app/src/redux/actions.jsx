@@ -139,8 +139,7 @@ export const getItemsWithThunk = () => {
 };
 
 export const get_Item_Id_With_Thunk = (id) => {
-  console.log("this is id", id);
-  const url = "http://localhost:3005/items/:" + id;
+  const url = "http://localhost:3005/items/" + id;
   const options = {
     method: "GET",
   };
@@ -149,9 +148,6 @@ export const get_Item_Id_With_Thunk = (id) => {
     if (response.ok) {
       const data = await response.json();
       dispatch(setItemClick(data));
-      console.log(response);
-      console.log(data);
-      console.log(ITEM_CLICKED);
     } else {
       dispatch(setItemClick("error happened"));
       console.log(ITEM_CLICKED);
