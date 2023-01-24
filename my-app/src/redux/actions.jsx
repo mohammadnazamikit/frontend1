@@ -1,5 +1,3 @@
-import { stringify } from "querystring";
-
 export const Loading = " Loading";
 export const Search = "Search";
 export const SET_USER_INFO = "setUserInfo";
@@ -139,7 +137,8 @@ export const getItemsWithThunk = () => {
 };
 
 export const get_Item_Id_With_Thunk = (id) => {
-  const url = "http://localhost:3005/items/" + id;
+  const url = `http://localhost:3005/items/${id}`;
+  console.log(url);
   const options = {
     method: "GET",
   };
@@ -149,9 +148,7 @@ export const get_Item_Id_With_Thunk = (id) => {
       const data = await response.json();
       dispatch(setItemClick(data));
     } else {
-      dispatch(setItemClick("error happened"));
-      console.log(ITEM_CLICKED);
-      console.log("this is a error happened while getting item with thunk");
+      dispatch(setItemClick("error happened in get by id"));
     }
   };
 };

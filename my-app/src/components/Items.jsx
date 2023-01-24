@@ -31,6 +31,10 @@ const Items = (props) => {
     navigate("/singleItem");
   };
 
+  const itemsToSend = (item) => {
+    dispatch(get_Item_Id_With_Thunk(item._id));
+  };
+
   useEffect(() => {
     // props.get_One_Item();
     dispatch(getItemsWithThunk());
@@ -42,11 +46,8 @@ const Items = (props) => {
       {itemsFromRedux &&
         itemsFromRedux.map((item, i) => {
           return (
-            <div key={i}>
-              <Item
-                item={item}
-                onClick={(item) => dispatch(get_Item_Id_With_Thunk(item._id))}
-              />
+            <div key={i} onClick={() => itemsToSend(item)}>
+              <Item item={item} />
             </div>
           );
         })}

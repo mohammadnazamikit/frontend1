@@ -57,7 +57,7 @@ const SingleItem = (props) => {
           </Col>
         </Row>
         <h3 className="text-danger d-flex justify-content-start">
-          {/*  {itemClickFromRedux.price} */} 8
+          {itemClickFromRedux.price}
         </h3>
       </Container>
       <Container>
@@ -70,7 +70,7 @@ const SingleItem = (props) => {
           </Col>
         </Row>
       </Container>
-      <h4> full description of product</h4>
+      <h4>{itemClickFromRedux.description}</h4>
       <Container>
         <Row>
           <Col>

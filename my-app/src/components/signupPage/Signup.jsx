@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { Alert, Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LogInWithThunk, setDataInState } from "../redux/actions";
-import Navbar1 from "./Navbar1";
+import { LogInWithThunk, setDataInState } from "../../redux/actions";
+import Popup_Modal from "../model/index";
+import Navbar1 from "../Navbar1";
 
-const mapStateToProps = (state) => {
+/* const mapStateToProps = (state) => {
   return {
     user: state.userInfo,
   };
@@ -20,9 +21,11 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(setDataInState(dataToState));
     },
   };
-};
+}; */
 
 const SignUp = (props) => {
+  const [show, setShow] = useState(false);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
@@ -39,8 +42,8 @@ const SignUp = (props) => {
   };
 
   const navigate = useNavigate();
-  const HomePage = () => {
-    navigate("/");
+  const singInPage = () => {
+    navigate("/signin");
   };
 
   const signingUp = async (obj) => {
@@ -51,23 +54,23 @@ const SignUp = (props) => {
     };
     const URL = process.env.baseURL + `signin/register`;
     try {
-      /*   if (checked) { */
-      const response = await fetch(URL, options);
-      if (response.ok) {
-        const data = await response.json();
-        /* props.dataToSave(data); */
-        /* set_ID(data); */
-        console.log(data._id);
-        console.log(data.email);
-        set_ID(data._id);
-        setEmail(data.email);
-        props.userEmail(data.email);
+      if (show) {
+        const response = await fetch(URL, options);
+        if (response.ok) {
+          const data = await response.json();
+          props.dataToSave(data);
+          set_ID(data);
+          console.log(data._id);
+          console.log(data.email);
+          set_ID(data._id);
+          setEmail(data.email);
+          props.userEmail(data.email);
+        } else {
+          console.log("error getting data");
+        }
       } else {
-        console.log("error getting data");
+        <Popup_Modal show={true} handle_Show={true} />;
       }
-      /*  } else {
-        console.log("please agree to term and conditions");
-      } */
     } catch (error) {
       console.log("error in connecting to server :", error);
     }
@@ -119,10 +122,11 @@ const SignUp = (props) => {
         >
           <Form.Check
             type="checkbox"
-            onChange={(e) => setChecked(e.target.value)}
+            onChange={(e) => setShow(e.target.checked)}
             label="agree to terms and conditions"
           />
         </Form.Group>
+
         <Button
           variant="danger"
           type="submit"
@@ -135,11 +139,11 @@ const SignUp = (props) => {
       </Form>
       <h6>
         Have an account?{" "}
-        <a className="text-danger" onClick={HomePage}>
+        <a className="text-danger" onClick={singInPage}>
           Sign in
         </a>
       </h6>
     </>
   );
 };
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default /*  connect(mapStateToProps, mapDispatchToProps) */ SignUp;

@@ -6,7 +6,7 @@ import Navbar1 from "./components/Navbar1";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Navbar2 from "./components/Navbar2";
 import HomePage from "./components/HomePage";
-import SignUp from "./components/Signup";
+import SignUp from "./components/signupPage/Signup";
 import SignIn from "./components/Signin";
 import SearchResult from "./components/searchresultpage";
 import SingleItem from "./components/SingleItempage";
