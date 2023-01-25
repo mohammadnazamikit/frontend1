@@ -103,10 +103,7 @@ const SignIn = (props) => {
           Continue
         </Button>
       </Form>
-      <h6>Sign in with google account</h6>
-      <Button>
-        <Image src="../images/googleimage.png" height="20px" />
-      </Button>
+      <Button className="m-1">sign in with google</Button>
       <h6>
         don't have account?{" "}
         <a className="text-danger" onClick={signUp}>

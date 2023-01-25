@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
-import { connect } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { LogInWithThunk, setDataInState } from "../../redux/actions";
 import Popup_Modal from "../model/index";
@@ -69,7 +68,6 @@ const SignUp = (props) => {
           console.log("error getting data");
         }
       } else {
-        <Popup_Modal show={true} handle_Show={true} />;
       }
     } catch (error) {
       console.log("error in connecting to server :", error);
@@ -127,15 +125,15 @@ const SignUp = (props) => {
           />
         </Form.Group>
 
-        <Button
-          variant="danger"
-          type="submit"
-          onClick={(e) => {
-            handleSubmit(e);
-          }}
-        >
-          Continue
-        </Button>
+        {show && (
+          <Button
+            variant="danger"
+            type="submit"
+            onClick={(e) => handleSubmit(e)}
+          >
+            Continue
+          </Button>
+        )}
       </Form>
       <h6>
         Have an account?{" "}
