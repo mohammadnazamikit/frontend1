@@ -10,6 +10,7 @@ export const initialState = {
   },
   SIGN_UP_DATA_IN_STORE: "",
   item_Clicked: "",
+  EMAIL: "",
 };
 
 const Store = configureStore({

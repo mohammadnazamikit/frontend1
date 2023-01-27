@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { LogInWithThunk, setDataInState } from "../../redux/actions";
 import Popup_Modal from "../model/index";
@@ -29,6 +30,8 @@ const SignUp = (props) => {
   const [password, setPassword] = useState("");
   const [checked, setChecked] = useState(false);
   const [_id, set_ID] = useState("");
+  const dispatch = useDispatch();
+  const emailRedux = useSelector((state) => state.EMAIL);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,13 +54,17 @@ const SignUp = (props) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(obj),
     };
-    const URL = process.env.baseURL + `signin/register`;
+    const URL = `http://localhost:3005/signin/register`;
+    const url = `${process.env.baseURL}/signin/register`;
     try {
       if (show) {
         const response = await fetch(URL, options);
         if (response.ok) {
           const data = await response.json();
-          props.dataToSave(data);
+
+          dispatch(setEmail(data.email));
+          console.log(emailRedux);
+          console.log(data);
           set_ID(data);
           console.log(data._id);
           console.log(data.email);
@@ -68,6 +75,7 @@ const SignUp = (props) => {
           console.log("error getting data");
         }
       } else {
+        console.log("please check the checkbox");
       }
     } catch (error) {
       console.log("error in connecting to server :", error);

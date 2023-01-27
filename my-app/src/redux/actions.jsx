@@ -6,6 +6,12 @@ export const searching = null;
 export const Liking = null;
 export const ITEMS = "ITEMS";
 export const ITEM_CLICKED = "null";
+export const EMAIL = "null";
+
+export const setEmail = (data) => ({
+  type: EMAIL,
+  payload: data,
+});
 
 export const setItemClick = (data) => ({
   type: ITEM_CLICKED,

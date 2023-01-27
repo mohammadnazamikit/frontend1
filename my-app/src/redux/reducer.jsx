@@ -6,6 +6,8 @@ import {
   ITEMS,
   SIGN_UP_DATA,
   ITEM_CLICKED,
+  EMAIL,
+  setEmail,
 } from "./actions";
 
 const reducer = (state = initialState, action) => {
@@ -34,6 +36,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         item_Clicked: action.payload,
+      };
+    case EMAIL:
+      return {
+        ...state,
+        email: action.payload,
       };
     default:
       return state;
