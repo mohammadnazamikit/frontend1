@@ -2,9 +2,15 @@ import { useState } from "react";
 import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { LogInWithThunk, setDataInState } from "../../redux/actions";
+import {
+  LogInWithThunk,
+  setDataInState,
+  signingUp_With_thunk,
+} from "../../redux/actions";
 import Popup_Modal from "../model/index";
 import Navbar1 from "../Navbar1";
+import { setEmail } from "../../redux/actions";
+import { signingUp_With_Thunk } from "../../redux/actions";
 
 /* const mapStateToProps = (state) => {
   return {
@@ -39,47 +45,12 @@ const SignUp = (props) => {
       email: email,
       password: password,
     };
-    /*     console.log(postObj); */
-    signingUp(postObj);
+    dispatch(signingUp_With_Thunk(postObj));
   };
 
   const navigate = useNavigate();
   const singInPage = () => {
     navigate("/signin");
-  };
-
-  const signingUp = async (obj) => {
-    const options = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(obj),
-    };
-    const URL = `http://localhost:3005/signin/register`;
-    const url = `${process.env.baseURL}/signin/register`;
-    try {
-      if (show) {
-        const response = await fetch(URL, options);
-        if (response.ok) {
-          const data = await response.json();
-
-          dispatch(setEmail(data.email));
-          console.log(emailRedux);
-          console.log(data);
-          set_ID(data);
-          console.log(data._id);
-          console.log(data.email);
-          set_ID(data._id);
-          setEmail(data.email);
-          props.userEmail(data.email);
-        } else {
-          console.log("error getting data");
-        }
-      } else {
-        console.log("please check the checkbox");
-      }
-    } catch (error) {
-      console.log("error in connecting to server :", error);
-    }
   };
 
   return (
@@ -152,4 +123,4 @@ const SignUp = (props) => {
     </>
   );
 };
-export default /*  connect(mapStateToProps, mapDispatchToProps) */ SignUp;
+export default SignUp;

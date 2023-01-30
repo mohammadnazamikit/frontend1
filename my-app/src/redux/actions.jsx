@@ -1,12 +1,12 @@
 export const Loading = " Loading";
 export const Search = "Search";
 export const SET_USER_INFO = "setUserInfo";
-export const SIGN_UP_DATA = null;
-export const searching = null;
-export const Liking = null;
+export const SIGN_UP_DATA = "SIGN_UP_DATA";
+export const searching = "searching";
+export const Liking = "Liking";
 export const ITEMS = "ITEMS";
-export const ITEM_CLICKED = "null";
-export const EMAIL = "null";
+export const ITEM_CLICKED = "ITEM_CLICKED";
+export const EMAIL = "EMAIL";
 
 export const setEmail = (data) => ({
   type: EMAIL,
@@ -132,8 +132,6 @@ export const getItemsWithThunk = () => {
       dispatch(setItems(data));
       console.log(response);
       console.log(data);
-      console.log(ITEMS);
-      console.log("this line");
     } else {
       dispatch(setItems("error happened"));
       console.log(ITEMS);
@@ -155,6 +153,23 @@ export const get_Item_Id_With_Thunk = (id) => {
       dispatch(setItemClick(data));
     } else {
       dispatch(setItemClick("error happened in get by id"));
+    }
+  };
+};
+
+export const signingUp_With_Thunk = (obj) => {
+  const URL = `http://localhost:3005/signin/register`;
+  const options = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(obj),
+  };
+  return async (dispatch, getState) => {
+    const response = await fetch(URL, options);
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(setEmail(data.email));
+      console.log(EMAIL);
     }
   };
 };
