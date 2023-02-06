@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Footer from "./footer";
 import Items from "./Items";
 import Map from "./Map";

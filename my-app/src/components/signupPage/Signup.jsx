@@ -46,6 +46,9 @@ const SignUp = (props) => {
       password: password,
     };
     dispatch(signingUp_With_Thunk(postObj));
+    if (emailRedux) {
+      navigate("/");
+    }
   };
 
   const navigate = useNavigate();
@@ -106,13 +109,17 @@ const SignUp = (props) => {
 
         {show && (
           <Button
+            className="m-1"
             variant="danger"
             type="submit"
             onClick={(e) => handleSubmit(e)}
           >
-            Continue
+            Sign up
           </Button>
         )}
+        <Container>
+          <Button className="m-1">sign up with google</Button>
+        </Container>
       </Form>
       <h6>
         Have an account?{" "}

@@ -173,3 +173,23 @@ export const signingUp_With_Thunk = (obj) => {
     }
   };
 };
+
+export const SignIn_With_Thunk = (obj) => {
+  const url = `http://localhost:3005/signin/login`;
+
+  const options = {
+    method: "PUT",
+    Credential: "include",
+    body: JSON.stringify(obj),
+  };
+  return async (dispatch, getState) => {
+    const response = await fetch(url, options);
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(setDataInState(data));
+      console.log("here");
+    } else {
+      console.log("error");
+    }
+  };
+};

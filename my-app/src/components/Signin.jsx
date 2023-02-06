@@ -1,10 +1,14 @@
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { LogInWithThunk, setDataInState } from "../redux/actions";
+import {
+  LogInWithThunk,
+  setDataInState,
+  SignIn_With_Thunk,
+} from "../redux/actions";
 import Navbar1 from "./Navbar1";
-
+/* 
 const mapStateToProps = (state) => {
   return {
     user: state.data,
@@ -18,8 +22,9 @@ const mapDispatchToProps = (dispatch) => {
     },
   };
 };
-
+ */
 const SignIn = (props) => {
+  const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
@@ -31,31 +36,13 @@ const SignIn = (props) => {
     navigate("/");
   };
 
-  const SigningIn = async () => {
-    const url = "";
-
+  const handleSignIn = (e) => {
+    e.preventDefault();
     const obj = {
       passWord: password,
       Email: email,
     };
-    const options = {
-      method: "Get",
-      Credential: "include",
-      body: JSON.stringify(obj),
-    };
-    try {
-      const response = await fetch(url, options);
-      if (response.ok) {
-        const data = await response.json();
-        this.props.setData(data);
-      } else {
-        console.log("error");
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      toHome();
-    }
+    dispatch(SignIn_With_Thunk(obj));
   };
 
   return (
@@ -99,7 +86,7 @@ const SignIn = (props) => {
             </Row>
           </Container>
         </Form.Group>
-        <Button variant="danger" type="submit" onClick={SigningIn}>
+        <Button variant="danger" type="submit" onClick={(e) => handleSignIn(e)}>
           Continue
         </Button>
       </Form>
@@ -114,4 +101,4 @@ const SignIn = (props) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignIn);
+export default /* connect(mapStateToProps, mapDispatchToProps) */ SignIn;
