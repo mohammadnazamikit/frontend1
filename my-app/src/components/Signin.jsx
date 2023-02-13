@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { Button, Col, Container, Form, Image, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -25,6 +25,7 @@ const mapDispatchToProps = (dispatch) => {
  */
 const SignIn = (props) => {
   const dispatch = useDispatch();
+  const userInfoFromRedux = useSelector((state) => state.SIGN_UP_DATA_IN_STORE);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
@@ -39,10 +40,11 @@ const SignIn = (props) => {
   const handleSignIn = (e) => {
     e.preventDefault();
     const obj = {
-      passWord: password,
-      Email: email,
+      password: password,
+      email: email,
     };
     dispatch(SignIn_With_Thunk(obj));
+    console.log(userInfoFromRedux);
   };
 
   return (

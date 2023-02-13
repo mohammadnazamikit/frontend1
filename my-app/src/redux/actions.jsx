@@ -175,11 +175,15 @@ export const signingUp_With_Thunk = (obj) => {
 };
 
 export const SignIn_With_Thunk = (obj) => {
-  const url = `http://localhost:3005/signin/login`;
+  const url = "http://localhost:3005/signin/login";
 
   const options = {
     method: "PUT",
     Credential: "include",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(obj),
   };
   return async (dispatch, getState) => {
@@ -187,7 +191,7 @@ export const SignIn_With_Thunk = (obj) => {
     if (response.ok) {
       const data = await response.json();
       dispatch(setDataInState(data));
-      console.log("here");
+      dispatch(setEmail(data.email));
     } else {
       console.log("error");
     }
