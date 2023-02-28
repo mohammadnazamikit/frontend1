@@ -1,4 +1,5 @@
 import { useSelector } from "react-redux";
+import App from "./App";
 import Footer from "./footer";
 import Items from "./Items";
 import Map from "./Map";
@@ -14,6 +15,7 @@ const HomePage = (props) => {
       <div className="fw-bold ml-1 d-flex fs-1 ms-4 bg-secondary"> On sale</div>
       <Items />
       <Footer />
+      {/*  <App /> */}
     </>
   );
 };

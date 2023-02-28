@@ -118,7 +118,9 @@ const SignUp = (props) => {
           </Button>
         )}
         <Container>
-          <Button className="m-1">sign up with google</Button>
+          <a href="http://localhost:3005/signin/googleLogin">
+            <Button className="m-1">sign up with google</Button>
+          </a>
         </Container>
       </Form>
       <h6>

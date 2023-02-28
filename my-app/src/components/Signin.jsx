@@ -92,7 +92,10 @@ const SignIn = (props) => {
           Continue
         </Button>
       </Form>
-      <Button className="m-1">sign in with google</Button>
+      <a href="http://localhost:3005/signin/googleLogin">
+        <Button className="m-1">sign in with google</Button>
+      </a>
+
       <h6>
         don't have account?{" "}
         <a className="text-danger" onClick={signUp}>
