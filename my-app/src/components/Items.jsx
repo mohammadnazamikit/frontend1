@@ -41,17 +41,18 @@ const Items = (props) => {
   }, []);
 
   return (
-    <div className="d-flex ms-5" onClick={itemPage}>
-      {!itemsFromRedux && <h3>please wait to till add items</h3>}
-      {itemsFromRedux &&
-        itemsFromRedux.map((item, i) => {
-          return (
+    <>
+      <div className="d-flex ms-5" onClick={itemPage}>
+        {!itemsFromRedux && <h3>please wait to till add items</h3>}
+        {console.log(itemsFromRedux)}
+        {itemsFromRedux &&
+          itemsFromRedux.map((item, i) => (
             <div key={i} onClick={() => itemsToSend(item)}>
               <Item item={item} />
             </div>
-          );
-        })}
-    </div>
+          ))}
+      </div>
+    </>
   );
 };
 

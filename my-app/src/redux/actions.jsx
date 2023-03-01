@@ -86,7 +86,7 @@ export const searchWordWithThunk = (searchWord) => {
         type: searching,
         payload: searchWord,
       });
-      const url = "";
+      const url = "http://localhost:3005/items/search";
       const options = {
         method: "GET",
         Credential: "include",
@@ -121,7 +121,7 @@ export const LikingWithThunk = (data) => {
 };
 
 export const getItemsWithThunk = () => {
-  const url = "http://localhost:3005/items";
+  const url = "http://localhost:3005/items/";
   const options = {
     method: "GET",
   };
