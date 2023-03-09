@@ -8,6 +8,7 @@ import {
   ITEM_CLICKED,
   EMAIL,
   setEmail,
+  searchWord,
 } from "./actions";
 
 const reducer = (state = initialState, action) => {
@@ -41,6 +42,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         email: action.payload,
+      };
+    case searchWord:
+      return {
+        ...state,
+        searchword: action.payload,
       };
     default:
       return state;

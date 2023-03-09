@@ -1,10 +1,11 @@
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
 import { Button, Form } from "react-bootstrap";
 import { setUserInfo } from "../redux/actions";
 import { searchWordWithThunk } from "../redux/actions";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
-const mapStateToProps = (state) => {
+/* const mapStateToProps = (state) => {
   return {
     user: state.userinfo,
   };
@@ -19,11 +20,14 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(searchWordWithThunk(data));
     },
   };
-};
+}; */
 
 const SearchButton = (props) => {
+  const dispatch = useDispatch();
+  const itemsSearchFromRedux = useSelector((state) => state.searchword);
+  const [searchWord, setSearchWord] = useState(null);
   const SearchingWord = () => {
-    props.searchWord();
+    dispatch(searchWordWithThunk(searchWord));
     const navigate = useNavigate();
     navigate("/searchresult");
   };
@@ -35,12 +39,12 @@ const SearchButton = (props) => {
         placeholder="Search"
         className="me-2"
         aria-label="Search"
-        onChange={(e) => props.getMe(e.target.value)}
+        onChange={(e) => setSearchWord(e.target.value)}
       />
       <Button
         style={{ background: "black" }}
         variant="outline-success"
-        onClick={() => SearchingWord()}
+        onClick={() => SearchingWord(searchWord)}
       >
         Search
       </Button>
@@ -48,4 +52,4 @@ const SearchButton = (props) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchButton);
+export default SearchButton;

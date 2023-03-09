@@ -7,6 +7,7 @@ export const Liking = "Liking";
 export const ITEMS = "ITEMS";
 export const ITEM_CLICKED = "ITEM_CLICKED";
 export const EMAIL = "EMAIL";
+export const searchWord = "search";
 
 export const setEmail = (data) => ({
   type: EMAIL,
@@ -33,9 +34,9 @@ export const setDataInState = (data) => ({
   payload: data,
 });
 
-export const setSearchWord = (searchWord) => ({
-  type: searching,
-  payload: searchWord,
+export const setSearchWord = (searchWording) => ({
+  type: searchWord,
+  payload: searchWording,
 });
 
 export const setLoading = (isLoading) => ({
@@ -79,22 +80,18 @@ export const LogInWithThunk = (email, password) => {
   };
 };
 
-export const searchWordWithThunk = (searchWord) => {
+export const searchWordWithThunk = (searchWord1) => {
   return async (dispatch, getState) => {
     try {
-      dispatch({
-        type: searching,
-        payload: searchWord,
-      });
-      const url = "http://localhost:3005/items/search";
       const options = {
         method: "GET",
         Credential: "include",
-        body: JSON.stringify({ word: searchWord }),
+        /*  body: JSON.stringify({ word: searchWord }) */
       };
-
+      const url = `http://localhost:3005/items?word=${searchWord1}`;
       const response = await fetch(url, options);
       const data = await response.json();
+      console.log(data);
       dispatch(setSearchWord(data));
     } catch (error) {
       console.log("this is a error", error);
