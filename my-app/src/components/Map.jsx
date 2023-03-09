@@ -10,49 +10,29 @@ import { icon } from "leaflet";
 import { Component, useState } from "react";
 import L from "leaflet";
 import symbol from "../images/marker.png";
-
-function getIcon() {
-  return L.icon({
-    iconUrl: symbol,
-    iconSize: [40],
-  });
-}
-
-function LocationMarker() {
-  const [position, setPosition] = useState(null);
-  const map = useMapEvents({
-    click() {
-      map.locate();
-    },
-    locationfound(e) {
-      setPosition(e.latlng);
-      map.flyTo(e.latlng, map.getZoom());
-    },
-  });
-
-  return position === null ? null : (
-    <Marker position={position} icon={getIcon()}>
-      <Popup>You are here</Popup>
-    </Marker>
-  );
-}
+import "leaflet-control-geocoder/dist/Control.Geocoder.css";
+import "leaflet-control-geocoder/dist/Control.Geocoder.js";
+import LeafletGeoCoder from "./LeafletGeoCoder";
+import LeafletRoutingMachine from "./leafletroutingmachine";
 
 class Map extends Component {
   render() {
     return (
-      <div className="d-flex m-5 justify-content-center">
+      <div className="d-flex m-2 justify-content-center">
         <MapContainer
           center={[49.006889, 8.403653]}
           zoom={13}
           scrollWheelZoom={true}
           className="ms-5"
-          style={{ height: "40vh", width: "100vh" }}
+          style={{ height: "50vh", width: "200vh" }}
         >
           <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap </a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">Mohammad jan Nazami </a> contributors'
+            url="https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=c4pHdOKyJpGH4HutVoHO"
           />
-          <LocationMarker />
+          {/*  <LeafletGeoCoder /> */}
+          {/* <LocationMarker /> */}
+          <LeafletRoutingMachine />
         </MapContainer>
       </div>
     );
