@@ -11,6 +11,7 @@ import Popup_Modal from "../model/index";
 import Navbar1 from "../Navbar1";
 import { setEmail } from "../../redux/actions";
 import { signingUp_With_Thunk } from "../../redux/actions";
+import "../signupPage/style.css";
 
 /* const mapStateToProps = (state) => {
   return {
